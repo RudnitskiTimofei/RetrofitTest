@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">RetrofitTest</string>
+    <string name="base_url">https://newsapi.org/</string>
+    <string name="published_at">Published At</string>
+    <string name="title">Title</string>
+    <string name="author">Author</string>
+    <string name="glide_text">Glide</string>
+    <string name="picasso_text">Picasso</string>
+    <string name="title_detail">Title</string>
+    <string name="source_name_detail">Source name</string>
+    <string name="description_detail">Description</string>
+    <string name="image_with_glide_library">Image with Glide library</string>
+    <string name="image_with_picasso_library">Image with Picasso library</string>
+    <string-array name="spinner">
+        <item>Software</item>
+        <item>Samsung</item>
+        <item>Engine</item>
+        <item>Sport</item>
+        <item>Art</item>
+    </string-array>
+</resources>

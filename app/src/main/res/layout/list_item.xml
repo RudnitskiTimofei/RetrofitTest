@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/layout_height_recycler_view"
+    android:background="@color/colorPrimary"
+    android:layout_margin="@dimen/margin_16dp"
+    android:onClick="onNewsClick"
+    android:orientation="vertical">
+
+<LinearLayout
+    android:id="@+id/linear_layout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/author_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_18sp"
+        android:text="@string/author" />
+
+    <TextView
+        android:id="@+id/title_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_18sp"
+        android:text="@string/title" />
+
+    <TextView
+        android:id="@+id/publishedAt_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_18sp"
+        android:text="@string/published_at" />
+</LinearLayout>
+</androidx.cardview.widget.CardView>
