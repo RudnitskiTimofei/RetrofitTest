@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorAccent"
+    android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
     <include
-        layout="@layout/toolbar"
-        android:id="@+id/toolbar"/>
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="@dimen/layout_height_spinner"
-        android:entries="@array/spinner"
-        android:layout_marginStart="@dimen/margin_16dp"
-        android:layout_marginEnd="@dimen/margin_16dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_16dp"
         android:layout_marginEnd="@dimen/margin_16dp"
+        android:entries="@array/spinner" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_4dp"
-        android:id="@+id/recycle_view"/>
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginEnd="@dimen/margin_16dp" />
 </LinearLayout>

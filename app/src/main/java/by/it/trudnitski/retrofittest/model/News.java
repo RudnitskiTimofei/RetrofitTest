@@ -1,11 +1,15 @@
 package by.it.trudnitski.retrofittest.model;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class News {
+public class News implements Serializable {
     @SerializedName("status")
     @Expose
     private String status;
@@ -38,5 +42,21 @@ public class News {
 
     public void setArticles(List<Article> articles) {
         this.articles = articles;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        return super.equals(obj);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

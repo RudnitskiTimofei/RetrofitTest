@@ -55,13 +55,9 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnNew
     }
 
     public void pushToRefresh(){
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Connection(spinnerChoose).execute();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> new Connection(spinnerChoose).execute());
     }
+
     public void spinnerListener(){
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -73,10 +69,20 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnNew
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                //do nothing
             }
         });
     }
 
+    @Override
+    public void OnNewsClick(int position) {
+        Intent intent = new Intent(this, NewsDetailActivity.class);
+        intent.putExtra(TITLE, articles.get(position).getTitle());
+        intent.putExtra(SOURCE_NAME, articles.get(position).getSource().getName());
+        intent.putExtra(DESCRIPTION, articles.get(position).getDescription());
+        intent.putExtra(IMAGE_URL, articles.get(position).getUrlToImage());
+        startActivity(intent);
+    }
 
     public class Connection extends AsyncTask<Void, Void, Void>{
         private String source;
@@ -91,11 +97,6 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnNew
             super.onPreExecute();
             dialog.setTitle(DIALOG_REFRESH_CONTENT);
             dialog.show();
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
         }
 
         @Override
@@ -126,14 +127,5 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnNew
             return null;
         }
 
-    }
-    @Override
-    public void OnNewsClick(int position) {
-        Intent intent = new Intent(this, NewsDetailActivity.class);
-        intent.putExtra(TITLE, articles.get(position).getTitle());
-        intent.putExtra(SOURCE_NAME, articles.get(position).getSource().getName());
-        intent.putExtra(DESCRIPTION, articles.get(position).getDescription());
-        intent.putExtra(IMAGE_URL, articles.get(position).getUrlToImage());
-        startActivity(intent);
     }
 }
