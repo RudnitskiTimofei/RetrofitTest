@@ -5,11 +5,15 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -82,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnNew
         intent.putExtra(DESCRIPTION, articles.get(position).getDescription());
         intent.putExtra(IMAGE_URL, articles.get(position).getUrlToImage());
         startActivity(intent);
+        overridePendingTransition(R.anim.rotate, R.anim.alpha);
     }
 
     public class Connection extends AsyncTask<Void, Void, Void>{
