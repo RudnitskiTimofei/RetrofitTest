@@ -2,6 +2,8 @@
 <resources>
     <dimen name="margin_16dp">16dp</dimen>
     <dimen name="margin_4dp">4dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="margin_32dp">32dp</dimen>
     <dimen name="layout_height_recycler_view">150dp</dimen>
     <dimen name="layout_height_spinner">60dp</dimen>
     <dimen name="text_size_18sp">18sp</dimen>

@@ -13,7 +13,6 @@ public class ApiClient {
     private static OkHttpClient client= new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
     public static Retrofit getClient() {
-
         if (retrofit == null){
             retrofit  = new Retrofit.Builder()
                     .baseUrl(BASE_URL)

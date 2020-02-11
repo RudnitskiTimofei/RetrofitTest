@@ -18,4 +18,8 @@
         <item>Sport</item>
         <item>Art</item>
     </string-array>
+    <string name="google_app_KEY">AIzaSyBl2Q0boZ7w3km5Qb2xtRYL1m5kA4BfRCs</string>
+    <string name="show_map">Show map</string>
+    <string name="show_customview">Show CustomView</string>
+    <string name="swap_color">Swap color</string>
 </resources>

@@ -11,15 +11,17 @@
         android:id="@+id/custom_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:square_radius="150dp"
-        app:square_color="@color/colorPrimary"
-        app:show_circle="true"
         android:background="@color/colorPrimaryDark"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.371" />
+        app:layout_constraintVertical_bias="0.0"
+        app:show_circle="true"
+        app:square_color="@color/colorPrimary"
+        app:square_radius="150dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

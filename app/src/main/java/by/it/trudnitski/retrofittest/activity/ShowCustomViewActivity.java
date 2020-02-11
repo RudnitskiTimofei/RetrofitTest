@@ -11,14 +11,14 @@ import by.it.trudnitski.retrofittest.util.CustomCircleView;
 
 public class ShowCustomViewActivity extends AppCompatActivity {
 
-    CustomCircleView view;
+    CustomCircleView customView;
+    Button buttonSwapColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_custom_view);
-        view = findViewById(R.id.custom_view);
-
+        customView = findViewById(R.id.custom_view);
+        customView.setClickable(true);
     }
-
 }

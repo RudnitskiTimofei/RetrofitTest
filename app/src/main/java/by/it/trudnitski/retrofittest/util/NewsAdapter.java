@@ -4,10 +4,13 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -43,6 +46,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         if (!TextUtils.isEmpty(model.getPublishedAt())) {
             holder.publishedAt.setText(model.getPublishedAt());
         }
+            Picasso.get().load(model.getUrlToImage()).into(holder.imageView);
     }
 
     @Override
@@ -54,14 +58,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         private TextView author;
         private TextView title;
         private TextView publishedAt;
+        private ImageView imageView;
         OnNewsListener mOnNewsListener;
-
 
         ViewHolder(@NonNull View itemView, OnNewsListener onNewsListener) {
             super(itemView);
             author = itemView.findViewById(R.id.author_item);
             title = itemView.findViewById(R.id.title_item);
             publishedAt = itemView.findViewById(R.id.publishedAt_item);
+            imageView = itemView.findViewById(R.id.image_item);
             mOnNewsListener = onNewsListener;
             itemView.setOnClickListener(this);
         }

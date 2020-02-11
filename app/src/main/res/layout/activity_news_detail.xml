@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorAccent"
+    android:orientation="vertical"
     tools:context=".activity.NewsDetailActivity">
 
     <TextView
@@ -14,27 +14,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="@dimen/margin_16dp"
-        android:layout_marginTop="@dimen/margin_16dp"
-        android:layout_marginEnd="@dimen/margin_16dp"
-        android:textSize="@dimen/text_size_18sp"
+        android:layout_marginStart="@dimen/margin_32dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:layout_marginEnd="@dimen/margin_32dp"
         android:text="@string/title_detail"
+        android:textSize="@dimen/text_size_18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-       />
+        app:layout_constraintTop_toBottomOf="@+id/picasso_image" />
 
     <TextView
         android:id="@+id/source_name_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="@dimen/margin_16dp"
-        android:layout_marginTop="@dimen/margin_4dp"
-        android:layout_marginEnd="@dimen/margin_16dp"
+        android:layout_marginStart="@dimen/margin_32dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:layout_marginEnd="@dimen/margin_32dp"
         android:text="@string/source_name_detail"
         android:textSize="@dimen/text_size_18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_detail" />
 
@@ -43,64 +43,45 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="@dimen/margin_16dp"
-        android:layout_marginTop="@dimen/margin_4dp"
-        android:layout_marginEnd="@dimen/margin_16dp"
+        android:layout_marginStart="@dimen/margin_32dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:layout_marginEnd="@dimen/margin_32dp"
         android:text="@string/description_detail"
         android:textSize="@dimen/text_size_18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/source_name_detail" />
 
-    <TextView
-        android:id="@+id/glide_text"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/button_map"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="@dimen/margin_16dp"
-        android:layout_marginTop="@dimen/margin_4dp"
-        android:layout_marginEnd="@dimen/margin_16dp"
-        android:text="@string/glide_text"
-        android:textSize="@dimen/text_size_18sp"
+        android:layout_marginTop="@dimen/margin_32dp"
+        android:text="@string/show_map"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description_detail" />
 
     <ImageView
-        android:id="@+id/glide_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:contentDescription="@string/image_with_glide_library"
-        android:scaleType="centerInside"
-        app:layout_constraintBottom_toTopOf="@+id/picasso_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/glide_text" />
-
-    <TextView
-        android:id="@+id/picasso_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/margin_4dp"
-        android:layout_marginBottom="@dimen/margin_4dp"
-        android:text="@string/picasso_text"
-        android:textSize="@dimen/text_size_18sp"
-        app:layout_constraintBottom_toTopOf="@+id/picasso_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/glide_image" />
-
-    <ImageView
         android:id="@+id/picasso_image"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:contentDescription="@string/image_with_picasso_library"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <Button
+        android:id="@+id/button_custom_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/margin_16dp"
-        android:contentDescription="@string/image_with_picasso_library"
-        android:scaleType="centerInside"
+        android:layout_marginBottom="@dimen/margin_32dp"
+        android:text="@string/show_customview"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_map" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,36 +4,48 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="@dimen/layout_height_recycler_view"
-    android:background="@color/colorPrimary"
     android:layout_margin="@dimen/margin_16dp"
+    android:background="@color/colorPrimary"
     android:onClick="onNewsClick"
     android:orientation="vertical">
 
-<LinearLayout
-    android:id="@+id/linear_layout"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/author_item"
+    <LinearLayout
+        android:id="@+id/linear_layout_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size_18sp"
-        android:text="@string/author" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/title_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size_18sp"
-        android:text="@string/title" />
+        <ImageView
+            android:id="@+id/image_item"
+            android:layout_width="@dimen/layout_height_recycler_view"
+            android:layout_height="@dimen/layout_height_recycler_view"
+            />
 
-    <TextView
-        android:id="@+id/publishedAt_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size_18sp"
-        android:text="@string/published_at" />
-</LinearLayout>
+        <LinearLayout
+            android:id="@+id/linear_layout_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/author_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/author"/>
+
+            <TextView
+                android:id="@+id/title_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/title"
+                 />
+
+            <TextView
+                android:id="@+id/publishedAt_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/published_at"
+                />
+        </LinearLayout>
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

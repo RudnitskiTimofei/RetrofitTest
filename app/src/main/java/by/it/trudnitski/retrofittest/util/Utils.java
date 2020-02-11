@@ -1,5 +1,7 @@
 package by.it.trudnitski.retrofittest.util;
 
+import android.location.Location;
+
 import java.util.Date;
 
 public class Utils {
@@ -9,4 +11,11 @@ public class Utils {
         return date.toString();
     }
 
+    public static String getLanguage(){
+        return null;
+    }
+
+    public static String getCountry(){
+        return null;
+    }
 }

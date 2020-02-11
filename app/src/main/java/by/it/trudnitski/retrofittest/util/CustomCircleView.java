@@ -5,9 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -15,12 +13,12 @@ import androidx.annotation.Nullable;
 import by.it.trudnitski.retrofittest.R;
 
 public class CustomCircleView extends View {
-
     private Paint mPaint;
     private int mColor;
     private float mRadius;
-    private float mCircleX, mCirclY;
-    private boolean flag;
+    private float mCircleX;
+    private float mCircleY;
+    private boolean showCircle;
     private int backgroundColor;
 
     public CustomCircleView(Context context) {
@@ -52,7 +50,7 @@ public class CustomCircleView extends View {
         //mColor = ta.getColor(R.styleable.CustomCircleView_square_color, Color.MAGENTA);
         mColor = R.attr.background;
         mRadius = ta.getDimensionPixelOffset(R.styleable.CustomCircleView_square_radius, 100);
-        flag = ta.getBoolean(R.styleable.CustomCircleView_show_circle, true);
+        showCircle = ta.getBoolean(R.styleable.CustomCircleView_show_circle, true);
         ta.recycle();
     }
 
@@ -61,43 +59,12 @@ public class CustomCircleView extends View {
         super.onDraw(canvas);
         backgroundColor = Color.GRAY;
         mCircleX = this.getWidth() / 2;
-        mCirclY = this.getHeight() / 2;
+        mCircleY = this.getHeight() / 2;
         mPaint.setColor(mColor);
         canvas.drawColor(backgroundColor);
-        if (!flag) {
+        if (!showCircle) {
             mPaint.setColor(backgroundColor);
         }
-        canvas.drawCircle(mCircleX, mCirclY, mRadius, mPaint);
-
-    }
-
-    public void swapColor() {
-        mPaint.setColor(mPaint.getColor() == mColor ? Color.GREEN : mColor);
-        postInvalidate();
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        boolean value = super.onTouchEvent(event);
-
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-
-                return true;
-            case MotionEvent.ACTION_MOVE:
-                float x = event.getX();
-                float y = event.getY();
-                double dx = Math.pow(x - mCircleX, 2);
-                double dy = Math.pow(y - mCirclY, 2);
-
-                if (dx + dy < Math.pow(mRadius, 2)) {
-                    mCircleX = x;
-                    mCirclY = y;
-                    postInvalidate();
-                    return true;
-                }
-                return value;
-        }
-        return value;
+        canvas.drawCircle(mCircleX, mCircleY, mRadius, mPaint);
     }
 }

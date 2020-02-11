@@ -1,21 +1,18 @@
 package by.it.trudnitski.retrofittest.activity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.List;
 
@@ -45,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnNew
     private NewsAdapter adapter;
     private Toolbar toolbar;
     private Spinner spinner;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +50,16 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnNew
         setContentView(R.layout.activity_main);
         spinner = findViewById(R.id.spinner);
         toolbar = findViewById(R.id.toolbar);
-
-        toolbar.setNavigationIcon(android.R.drawable.ic_popup_sync);
-        pushToRefresh();
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh);
         spinnerListener();
+        pullToRefresh();
     }
 
-    public void pushToRefresh(){
-        toolbar.setNavigationOnClickListener(v -> new Connection(spinnerChoose).execute());
+    public void pullToRefresh(){
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            new Connection(spinnerChoose).execute();
+            swipeRefreshLayout.setRefreshing(false);
+        });
     }
 
     public void spinnerListener(){
@@ -80,18 +80,19 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnNew
 
     @Override
     public void OnNewsClick(int position) {
-        Intent intent = new Intent(this, NewsDetailActivity.class);
-        intent.putExtra(TITLE, articles.get(position).getTitle());
-        intent.putExtra(SOURCE_NAME, articles.get(position).getSource().getName());
-        intent.putExtra(DESCRIPTION, articles.get(position).getDescription());
-        intent.putExtra(IMAGE_URL, articles.get(position).getUrlToImage());
-        startActivity(intent);
-        overridePendingTransition(R.anim.rotate, R.anim.alpha);
+            Intent intent = new Intent(this, NewsDetailActivity.class);
+            intent.putExtra(TITLE, articles.get(position).getTitle());
+            intent.putExtra(SOURCE_NAME, articles.get(position).getSource().getName());
+            intent.putExtra(DESCRIPTION, articles.get(position).getDescription());
+            intent.putExtra(IMAGE_URL, articles.get(position).getUrlToImage());
+            startActivity(intent);
+            overridePendingTransition(R.anim.rotate, R.anim.alpha);
     }
 
     public class Connection extends AsyncTask<Void, Void, Void>{
         private String source;
-        private ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+        private AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+        AlertDialog alertDialog;
 
         Connection(String string) {
             source = string;
@@ -100,8 +101,10 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnNew
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            dialog.setTitle(DIALOG_REFRESH_CONTENT);
-            dialog.show();
+            dialog.setTitle("Process");
+            dialog.setMessage(DIALOG_REFRESH_CONTENT);
+            alertDialog = dialog.create();
+            alertDialog.show();
         }
 
         @Override
@@ -120,17 +123,16 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnNew
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                     if (response.isSuccessful()) {
-                        dialog.dismiss();
+                        alertDialog.cancel();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<News> call, Throwable t) {
-                    dialog.setTitle(DIALOG_ERROR_MESSAGE);
+                    alertDialog.setMessage(DIALOG_ERROR_MESSAGE);
                 }
             });
             return null;
         }
-
     }
 }
