@@ -28,7 +28,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements NewsAdapter.OnNewsListener {
-    private static final String APY_KEY = "cdb1f31d30b140e0a5aecfd9ec58ec47";
+    private static final String APY_KEY = "your key";
     private static final String DIALOG_REFRESH_CONTENT = " Content refreshing now ";
     private static final String DIALOG_ERROR_MESSAGE = " Something wrong!!! ";
     private static final String TITLE = "title";
