@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnNew
     private static final String PUBLISHED_AT = "publishedAt";
     private static final String SOURCE_NAME = "source:name";
     private static final String DESCRIPTION = "description";
+    private static final String DIALOG_TITLE = "Process";
     private String spinnerChoose;
     private RecyclerView recyclerView;
     private List<Article> articles;
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnNew
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            dialog.setTitle("Process");
+            dialog.setTitle(DIALOG_TITLE);
             dialog.setMessage(DIALOG_REFRESH_CONTENT);
             alertDialog = dialog.create();
             alertDialog.show();

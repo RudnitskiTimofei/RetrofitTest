@@ -42,16 +42,15 @@ public class CustomCircleView extends View {
     }
 
     public void init(AttributeSet set) {
-        if (set == null) {
-            return;
+        if (set != null) {
+            mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            TypedArray ta = getContext().obtainStyledAttributes(set, R.styleable.CustomCircleView);
+            mColor = ta.getColor(R.styleable.CustomCircleView_square_color, Color.MAGENTA);
+            //mColor = R.attr.background;
+            mRadius = ta.getDimensionPixelOffset(R.styleable.CustomCircleView_square_radius, 100);
+            showCircle = ta.getBoolean(R.styleable.CustomCircleView_show_circle, true);
+            ta.recycle();
         }
-        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        TypedArray ta = getContext().obtainStyledAttributes(set, R.styleable.CustomCircleView);
-        //mColor = ta.getColor(R.styleable.CustomCircleView_square_color, Color.MAGENTA);
-        mColor = R.attr.background;
-        mRadius = ta.getDimensionPixelOffset(R.styleable.CustomCircleView_square_radius, 100);
-        showCircle = ta.getBoolean(R.styleable.CustomCircleView_show_circle, true);
-        ta.recycle();
     }
 
     @Override

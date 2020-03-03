@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -25,11 +23,14 @@ import com.google.android.gms.location.LocationServices;
 import com.squareup.picasso.Picasso;
 
 import by.it.trudnitski.retrofittest.R;
-import by.it.trudnitski.retrofittest.util.CustomCircleView;
 
 public class NewsDetailActivity extends AppCompatActivity {
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private static final String TITLE = "title";
+    private static final String IMAGE_URL = "imageUrl";
+    private static final String SOURCE_NAME = "source:name";
+    private static final String DESCRIPTION = "description";
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 0;
     private static final int REQUEST_ERROR = 0;
     private Boolean mLocationPermissionGranted = false;
@@ -61,10 +62,10 @@ public class NewsDetailActivity extends AppCompatActivity {
         mClient = new GoogleApiClient.Builder(this).addApi(LocationServices.API).build();
 
         intent = getIntent();
-        title = intent.getExtras().getString("title");
-        sourceName = intent.getExtras().getString("source:name");
-        description = intent.getExtras().getString("description");
-        imageUrl = intent.getExtras().getString("imageUrl");
+        title = intent.getExtras().getString(TITLE);
+        sourceName = intent.getExtras().getString(SOURCE_NAME);
+        description = intent.getExtras().getString(DESCRIPTION);
+        imageUrl = intent.getExtras().getString(IMAGE_URL);
 
         titleView.setText(title);
         sourceNameView.setText(sourceName);
@@ -125,12 +126,7 @@ public class NewsDetailActivity extends AppCompatActivity {
         apiAvailability = GoogleApiAvailability.getInstance();
         int errorCode = apiAvailability.isGooglePlayServicesAvailable(this);
         if (errorCode != ConnectionResult.SUCCESS) {
-            Dialog errorDialog = apiAvailability.getErrorDialog(this, errorCode, REQUEST_ERROR, new DialogInterface.OnCancelListener() {
-                @Override
-                public void onCancel(DialogInterface dialog) {
-                    finish();
-                }
-            });
+            Dialog errorDialog = apiAvailability.getErrorDialog(this, errorCode, REQUEST_ERROR, dialog -> finish());
             errorDialog.show();
         }
     }
